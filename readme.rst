@@ -1,71 +1,83 @@
-###################
-What is CodeIgniter
-###################
+##################
+Loja Virtual
+##################
 
-CodeIgniter is an Application Development Framework - a toolkit - for people
-who build web sites using PHP. Its goal is to enable you to develop projects
-much faster than you could if you were writing code from scratch, by providing
-a rich set of libraries for commonly needed tasks, as well as a simple
-interface and logical structure to access these libraries. CodeIgniter lets
-you creatively focus on your project by minimizing the amount of code needed
-for a given task.
+Loja Virtual é um sistema de e-commerce desenvolvido com o framework CodeIgniter.
+Este projeto oferece uma solução completa para vendas online, incluindo
+catálogo de produtos, carrinho de compras, sistema de pagamentos e
+administração de pedidos.
 
 *******************
-Release Information
+Informações da Versão
 *******************
 
-This repo contains in-development code for future releases. To download the
-latest stable release please visit the `CodeIgniter Downloads
-<https://codeigniter.com/download>`_ page.
+Este repositório contém o código em desenvolvimento. Para baixar a versão
+estável mais recente, consulte a seção de releases do projeto.
 
 **************************
-Changelog and New Features
+Changelog e Novas Features
 **************************
 
-You can find a list of all changes for each release in the `user
-guide change log <https://github.com/bcit-ci/CodeIgniter/blob/develop/user_guide_src/source/changelog.rst>`_.
+Você pode encontrar uma lista de todas as mudanças para cada release no
+arquivo de changelog do projeto.
 
 *******************
-Server Requirements
+Requisitos do Servidor
 *******************
 
-PHP version 5.6 or newer is recommended.
+PHP versão 7.4 ou superior é recomendado.
 
-It should work on 5.3.7 as well, but we strongly advise you NOT to run
-such old versions of PHP, because of potential security and performance
-issues, as well as missing features.
+MySQL 5.7 ou superior.
+
+Extensões PHP necessárias:
+- mysqli
+- gd
+- curl
+- mbstring
 
 ************
-Installation
+Instalação
 ************
 
-Please see the `installation section <https://codeigniter.com/userguide3/installation/index.html>`_
-of the CodeIgniter User Guide.
+1. Clone ou baixe o projeto para o diretório do seu servidor web
+2. Configure o banco de dados no arquivo `application/config/database.php`
+3. Execute o script SQL de criação das tabelas (disponível na pasta `database/`)
+4. Configure as URLs base no arquivo `application/config/config.php`
+5. Configure as credenciais de email no arquivo `application/config/email.php`
 
 *******
-License
+Licença
 *******
 
-Please see the `license
-agreement <https://github.com/bcit-ci/CodeIgniter/blob/develop/user_guide_src/source/license.rst>`_.
+Este projeto está licenciado sob a Licença MIT. Veja o arquivo LICENSE 
+para mais detalhes.
 
 *********
-Resources
+Features
 *********
 
--  `User Guide <https://codeigniter.com/docs>`_
--  `Contributing Guide <https://github.com/bcit-ci/CodeIgniter/blob/develop/contributing.md>`_
--  `Language File Translations <https://github.com/bcit-ci/codeigniter3-translations>`_
--  `Community Forums <http://forum.codeigniter.com/>`_
--  `Community Wiki <https://github.com/bcit-ci/CodeIgniter/wiki>`_
--  `Community Slack Channel <https://codeigniterchat.slack.com>`_
+- Catálogo de produtos com categorias
+- Sistema de carrinho de compras
+- Checkout e processamento de pedidos
+- Painel administrativo
+- Gestão de usuários e clientes
+- Relatórios de vendas
+- Sistema de cupons de desconto
+- Integração com sistemas de pagamento
 
-Report security issues to our `Security Panel <mailto:security@codeigniter.com>`_
-or via our `page on HackerOne <https://hackerone.com/codeigniter>`_, thank you.
+*********
+Recursos
+*********
+
+-  `Documentação do CodeIgniter <https://codeigniter.com/docs>`_
+-  `Guia de Contribuição <https://github.com/bcit-ci/CodeIgniter/blob/develop/contributing.md>`_
+-  `Fóruns da Comunidade <http://forum.codeigniter.com/>`_
+
+Para questões de segurança, entre em contato através do email do projeto.
 
 ***************
-Acknowledgement
+Reconhecimentos
 ***************
 
-The CodeIgniter team would like to thank EllisLab, all the
-contributors to the CodeIgniter project and you, the CodeIgniter user.
+Este projeto foi desenvolvido utilizando o framework CodeIgniter.
+Agradecemos à comunidade CodeIgniter e a todos os contribuidores.
