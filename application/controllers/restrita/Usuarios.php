@@ -30,4 +30,22 @@ class Usuarios extends CI_Controller {
 		$this->load->view('restrita/layout/footer');
 	}
 
+	public function core($usuario_id = NULL) {
+		if(!$usuario_id){
+
+		}else{
+			if(!$this->ion_auth->user($usuario_id)->row()){
+				var_dump('Usuário não existe');
+			}else{
+				$data = array(
+					'titulo' => 'Editar usuário',
+					'usuario' => $this->ion_auth->user($usuario_id)->row(),
+				);
+
+				$this->load->view('restrita/layout/header', $data);
+				$this->load->view('restrita/usuarios/core');
+				$this->load->view('restrita/layout/footer');
+			}
+		}
+	}
 }
