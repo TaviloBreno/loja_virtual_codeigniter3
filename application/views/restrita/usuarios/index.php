@@ -30,6 +30,19 @@
 								</div>
 							<?php endif; ?>
 
+							<?php if ($message = $this->session->flashdata('sucesso')): ?>
+								<div class="alert alert-success alert-has-icon alert-dismissible">
+									<div class="alert-icon"><i class="fas fa-check-circle"></i></div>
+									<div class="alert-body">
+										<div class="alert-title">Sucesso!</div>
+										<?php echo $message; ?>
+									</div>
+									<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+										<span aria-hidden="true">&times;</span>
+									</button>
+								</div>
+							<?php endif; ?>
+
 							<div class="table-responsive">
 								<table class="table table-striped data-table">
 									<thead>

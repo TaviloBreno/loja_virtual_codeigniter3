@@ -82,7 +82,7 @@
 									</select>
 								</div>
 
-								<?php if (isset($usuario)): ?> ?>
+								<?php if (isset($usuario)): ?>
 									<input type="text" name="usuario_id" value="<?php echo isset($usuario) ? $usuario->id : ''; ?>" hidden>
 								<?php endif; ?>
 							</div>
@@ -100,7 +100,7 @@
 						</div>
 
 						<div class="card-footer">
-							<button class="btn btn-primary"><i class="fas fa-edit"></i> Editar</button>
+							<button type="submit" class="btn btn-primary"><i class="fas fa-save"></i> Salvar</button>
 							<a href="<?php echo base_url('restrita/usuarios'); ?>" class="btn btn-secondary ml-2"><i class="fas fa-arrow-left"></i> Voltar</a>
 						</div>
 
