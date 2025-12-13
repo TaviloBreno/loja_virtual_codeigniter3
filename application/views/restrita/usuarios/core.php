@@ -34,20 +34,24 @@
 								<div class="form-group col-md-6">
 									<label for="inputNome">Nome</label>
 									<input type="text" class="form-control" name="first_name" id="inputNome" value="<?php echo isset($usuario) ? $usuario->first_name : ''; ?>">
+									<?php echo form_error('first_name', '<div class="text-danger">', '</div>'); ?>
 								</div>
 								<div class="form-group col-md-6">
 									<label for="inputSobrenome">Sobrenome</label>
 									<input type="text" class="form-control" name="last_name" id="inputSobrenome" value="<?php echo isset($usuario) ? $usuario->last_name : ''; ?>">
+									<?php echo form_error('last_name', '<div class="text-danger">', '</div>'); ?>
 								</div>
 							</div>
 							<div class="form-row">
 								<div class="form-group col-md-6">
 									<label for="inputEmail">Email</label>
 									<input type="email" class="form-control" name="email" id="inputEmail" value="<?php echo isset($usuario) ? $usuario->email : ''; ?>">
+									<?php echo form_error('email', '<div class="text-danger">', '</div>'); ?>
 								</div>
 								<div class="form-group col-md-6">
 									<label for="inputUsuario">Usuário</label>
 									<input type="text" class="form-control" name="username" id="inputUsuario" value="<?php echo isset($usuario) ? $usuario->username : ''; ?>">
+									<?php echo form_error('username', '<div class="text-danger">', '</div>'); ?>
 								</div>
 							</div>
 
