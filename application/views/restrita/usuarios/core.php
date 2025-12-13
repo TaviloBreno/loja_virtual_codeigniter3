@@ -54,7 +54,15 @@
 										<select class="form-control" name="perfil" id="inputPerfil">
 											<?php foreach ($grupos as $grupo): ?>
 
-												<option value="<?php echo $grupo->id; ?>" <?php echo (isset($perfil) && $perfil->id == $grupo->id) ? 'selected' : ''; ?>><?php echo $grupo->name; ?></option>
+												<?php if (isset($usuario)): ?>
+
+													<option value="<?php echo $grupo->id; ?>" <?php echo ($grupo->id == $perfil->id) ? 'selected' : ''; ?>><?php echo $grupo->name; ?></option>
+
+												<?php else: ?>
+
+													<option value="<?php echo $grupo->id; ?>"><?php echo $grupo->name; ?></option>
+
+												<?php endif; ?>
 
 											<?php endforeach; ?>
 										</select>

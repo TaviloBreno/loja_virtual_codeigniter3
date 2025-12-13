@@ -16,6 +16,20 @@
 							<h4><?php echo isset($titulo) ? $titulo : 'Gerenciar Usuários'; ?></h4>
 						</div>
 						<div class="card-body">
+
+							<?php if ($message = $this->session->flashdata('error')): ?>
+								<div class="alert alert-danger alert-has-icon alert-dismissible">
+									<div class="alert-icon"><i class="fas fa-exclamation-circle"></i></div>
+									<div class="alert-body">
+										<div class="alert-title">Atenção!</div>
+										<?php echo $message; ?>
+									</div>
+									<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+										<span aria-hidden="true">&times;</span>
+									</button>
+								</div>
+							<?php endif; ?>
+
 							<div class="table-responsive">
 								<table class="table table-striped data-table">
 									<thead>
@@ -31,7 +45,7 @@
 										</tr>
 									</thead>
 									<tbody>
-										<?php foreach($usuarios as $usuario): ?>
+										<?php foreach ($usuarios as $usuario): ?>
 
 											<tr>
 												<td class="text-center"><?php echo $usuario->id; ?></td>
