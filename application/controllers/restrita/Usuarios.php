@@ -128,10 +128,10 @@ class Usuarios extends CI_Controller
 						// Adicionar o usuário ao novo grupo
 						$this->ion_auth->add_to_group($perfil_post, $usuario_id);
 						
-						$this->session->set_flashdata('sucesso', 'Dados salvos com sucesso');
+						$this->session->set_flashdata('sucesso', 'Dados editados com sucesso');
 						redirect('restrita/usuarios');
 					} else {
-						$this->session->set_flashdata('error', 'Erro ao salvar os dados');
+						$this->session->set_flashdata('error', 'Erro ao editar os dados');
 					}
 				} else {
 					$data = array(
