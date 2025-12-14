@@ -35,15 +35,15 @@ class Core_model extends CI_Model
 	{
 		if($tabela && $this->db->table_exists($tabela) && is_array($data)) {
 
+			$this->db->insert($tabela, $data);
+
 			if($get_last_id){
-				$this->session->set_userdata('last_id', $this->db->insert_id());
+				return $this->db->insert_id();
 			}
 
-			if($this->db->affect_rows() > 0){
-				$this->db->set_flashdata('sucesso', 'Dados salvos com sucesso');
-			}else{
-				$this->db->set_flashdata('error', 'Erro ao salvar os dados');
-			}
+			return $this->db->affected_rows() > 0;
+		} else {
+			return FALSE;
 		}
 	}
 
@@ -51,11 +51,16 @@ class Core_model extends CI_Model
 	{
 		if($tabela && $this->db->table_exists($tabela) && is_array($data) && is_array($condicoes)) {
 
-			if($this->db->update($tabela, $data, $condicoes)){
-				$this->session->set_flashdata('sucesso', 'Dados atualizados com sucesso');
-			}else{
-				$this->session->set_flashdata('error', 'Erro ao atualizar os dados');
+			$this->db->where($condicoes);
+			$update = $this->db->update($tabela, $data);
+
+			if ($update) {
+				return TRUE;
 			}
+			
+			return FALSE;
+		} else {
+			return FALSE;
 		}
 	}
 
@@ -63,11 +68,11 @@ class Core_model extends CI_Model
 	{
 		if($tabela && $this->db->table_exists($tabela) && is_array($condicoes)) {
 
-			if($this->db->delete($tabela, $condicoes)){
-				$this->session->set_flashdata('sucesso', 'Registro excluído com sucesso');
-			}else{
-				$this->session->set_flashdata('error', 'Erro ao excluir o registro');
-			}
+			$this->db->delete($tabela, $condicoes);
+
+			return $this->db->affected_rows() > 0;
+		} else {
+			return FALSE;
 		}
 	}
 }
