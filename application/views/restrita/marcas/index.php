@@ -69,7 +69,7 @@
 												<td><?php echo ($marca->marca_ativa == 1 ? '<span class="badge badge-success badge-shadow">Sim</span>' : '<span class="badge badge-danger badge-shadow">Não</span>'); ?></td>
 												<td>
 													<a href="<?php echo base_url('restrita/marcas/core/' . $marca->marca_id); ?>" class="btn btn-primary btn-action mr-1" data-toggle="tooltip" title="Editar"><i class="fas fa-pencil-alt"></i></a>
-													<a href="<?php echo base_url('restrita/marcas/delete/' . $marca->marca_id); ?>" class="btn btn-danger btn-action btn-delete" data-toggle="tooltip" title="Excluir"><i class="fas fa-trash"></i></a>
+													<button type="button" class="btn btn-danger btn-action btn-delete" data-toggle="tooltip" title="Excluir" data-id="<?php echo $marca->marca_id; ?>" data-nome="<?php echo $marca->marca_nome; ?>"><i class="fas fa-trash"></i></button>
 												</td>
 											</tr>
 

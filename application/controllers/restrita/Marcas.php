@@ -32,6 +32,7 @@ class Marcas extends CI_Controller
 				'bundles/datatables/DataTables-1.10.16/js/dataTables.bootstrap4.min.js',
 				'bundles/jquery-ui/jquery-ui.min.js',
 				'js/page/datatables.js',
+				'js/marcas.js',
 			)
 		);
 
@@ -124,7 +125,7 @@ class Marcas extends CI_Controller
 		}
 	}
 
-	public function delete($marca_id = NULL)
+	public function excluir($marca_id = NULL)
 	{
 		if (!$marca_id || !$marca = $this->core_model->get_by_id('marcas', array('marca_id' => $marca_id))) {
 
