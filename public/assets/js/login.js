@@ -105,5 +105,25 @@
                 }
             });
         });
+        
+        // Adicionar efeito de loading nos botões sociais
+        const socialButtons = document.querySelectorAll('.btn-social');
+        socialButtons.forEach(function(button) {
+            button.addEventListener('click', function(e) {
+                // Adicionar spinner ao botão
+                const originalText = this.innerHTML;
+                this.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Aguarde...';
+                this.disabled = true;
+                
+                // Se houver erro, restaurar botão após timeout
+                setTimeout(function() {
+                    if (window.location.pathname === '/loja_virtual/login' || 
+                        window.location.pathname === '/loja_virtual/') {
+                        button.innerHTML = originalText;
+                        button.disabled = false;
+                    }
+                }, 5000);
+            });
+        });
     });
 })();

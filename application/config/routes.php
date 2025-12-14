@@ -55,5 +55,9 @@ $route['translate_uri_dashes'] = FALSE;
 
 $route['login'] = 'login/index';
 $route['login/esqueci_senha'] = 'login/esqueci_senha';
+$route['login/facebook'] = 'login/facebook';
+$route['login/facebook_callback'] = 'login/facebook_callback';
+$route['login/google'] = 'login/google';
+$route['login/google_callback'] = 'login/google_callback';
 $route['logout'] = 'login/logout';
 $route['restrita'] = 'restrita/home/index';

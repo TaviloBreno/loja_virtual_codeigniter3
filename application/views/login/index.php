@@ -93,6 +93,23 @@
 
 								<?php echo form_close(); ?>
 
+								<div class="text-center mt-4 mb-3">
+									<div class="text-job text-muted">Ou entre com</div>
+								</div>
+
+								<div class="row sm-gutters">
+									<div class="col-6">
+										<a href="<?php echo base_url('login/facebook'); ?>" class="btn btn-block btn-social btn-facebook">
+											<span class="fab fa-facebook"></span> Facebook
+										</a>
+									</div>
+									<div class="col-6">
+										<a href="<?php echo base_url('login/google'); ?>" class="btn btn-block btn-social btn-google">
+											<span class="fab fa-google"></span> Google
+										</a>
+									</div>
+								</div>
+
 							</div>
 						</div>
 						<div class="simple-footer">
