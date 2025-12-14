@@ -20,6 +20,10 @@ class Sistema extends CI_Controller
 		$data = array(
 			'titulo' => 'Configurações do sistema',
 			'sistema' => $this->core_model->get_by_id('sistema', array('sistema_id' => 1)),
+			'scripts' => array(
+				'mask/jquery.mask.min.js',
+				'mask/custom.js',
+			),
 		);
 
 		$this->load->view('restrita/layout/header', $data);

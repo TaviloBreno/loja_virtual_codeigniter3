@@ -16,17 +16,6 @@
 							<h4><?php echo isset($titulo) ? $titulo : 'Gerenciar Sistema'; ?></h4>
 						</div>
 
-						<?php $atributos = array(
-							'name' => 'form_core',
-						);
-
-						if (isset($usuario)) {
-							$usuario_id = $usuario->id;
-						} else {
-							$usuario_id = '';
-						}
-						?>
-
 						<?php echo form_open_multipart('restrita/sistema/'); ?>
 
 						<div class="card-body">
