@@ -27,6 +27,7 @@ class Usuarios extends CI_Controller
 				'bundles/datatables/DataTables-1.10.16/js/dataTables.bootstrap4.min.js',
 				'bundles/jquery-ui/jquery-ui.min.js',
 				'js/page/datatables.js',
+				'js/usuarios.js',
 			)
 		);
 

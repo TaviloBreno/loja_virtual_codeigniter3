@@ -71,7 +71,7 @@
 												<td><?php echo ($usuario->active == 1 ? '<span class="badge badge-success badge-shadow">Ativo</span>' : '<span class="badge badge-danger badge-shadow">Inativo</span>'); ?></td>
 												<td>
 													<a href="<?php echo base_url('restrita/usuarios/core/' . $usuario->id); ?>" class="btn btn-primary btn-action mr-1" data-toggle="tooltip" title="Editar"><i class="fas fa-pencil-alt"></i></a>
-													<a href="<?php echo base_url('restrita/usuarios/delete/' . $usuario->id); ?>" class="btn btn-danger btn-action" data-toggle="tooltip" title="Excluir"><i class="fas fa-trash"></i></a>
+											<button type="button" class="btn btn-danger btn-action btn-delete" data-toggle="tooltip" title="Excluir" data-id="<?php echo $usuario->id; ?>" data-nome="<?php echo $usuario->first_name . ' ' . $usuario->last_name; ?>"><i class="fas fa-trash"></i></button>
 												</td>
 											</tr>
 
