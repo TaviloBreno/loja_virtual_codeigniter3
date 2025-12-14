@@ -27,6 +27,9 @@
 						<li class="dropdown <?php echo $this->router->fetch_class() == 'marcas' ? 'active' : ''; ?>">
 							<a href="<?php echo base_url('restrita/marcas'); ?>" class="nav-link"><i data-feather="tag"></i><span>Marcas</span></a>
 						</li>
+						<li class="dropdown <?php echo $this->router->fetch_class() == 'categorias' ? 'active' : ''; ?>">
+						<a href="<?php echo base_url('restrita/categorias'); ?>" class="nav-link"><i data-feather="layers"></i><span>Categorias</span></a>
+						</li>
 					</ul>
 				</aside>
 			</div>
