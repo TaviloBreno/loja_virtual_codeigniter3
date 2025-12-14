@@ -38,7 +38,7 @@
 								</div>
 								<div class="form-group col-md-6">
 									<label for="inputCategoriaMetaLink">Meta link</label>
-									<input type="text" class="form-control" name="categoria_pai_meta_link" id="inputCategoriaMetaLink" value="<?php echo isset($categoria) ? $categoria->categoria_pai_meta_link : ''; ?>">
+								<input type="text" class="form-control" name="categoria_pai_meta_link" id="inputCategoriaMetaLink" value="<?php echo isset($categoria) ? $categoria->categoria_pai_meta_link : ''; ?>" readonly>
 									<?php echo form_error('categoria_pai_meta_link', '<div class="text-danger">', '</div>'); ?>
 								</div>
 							</div>

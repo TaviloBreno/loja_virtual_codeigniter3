@@ -46,7 +46,7 @@ class Categorias extends CI_Controller
 		if (!$categoria_pai_id) {
 			// Cadastrar nova categoria
 			$this->form_validation->set_rules('categoria_pai_nome', 'Nome da categoria', 'trim|required|min_length[2]|max_length[45]|callback_valida_categoria');
-			$this->form_validation->set_rules('categoria_pai_meta_link', 'Meta link da categoria', 'trim|required|min_length[2]|max_length[100]|callback_valida_meta_link');
+			$this->form_validation->set_rules('categoria_pai_meta_link', 'Meta link da categoria', 'trim|required|min_length[2]|max_length[100]');
 			$this->form_validation->set_rules('categoria_pai_ativa', 'Situação da categoria', 'trim|required|in_list[0,1]');
 
 			if ($this->form_validation->run()) {
@@ -72,6 +72,9 @@ class Categorias extends CI_Controller
 			} else {
 				$data = array(
 					'titulo' => 'Cadastrar categoria',
+					'scripts' => array(
+						'js/categorias_form.js',
+					),
 				);
 
 				$this->load->view('restrita/layout/header', $data);
@@ -88,7 +91,7 @@ class Categorias extends CI_Controller
 			} else {
 
 				$this->form_validation->set_rules('categoria_pai_nome', 'Nome da categoria', 'trim|required|min_length[2]|max_length[45]|callback_valida_categoria');
-				$this->form_validation->set_rules('categoria_pai_meta_link', 'Meta link da categoria', 'trim|required|min_length[2]|max_length[100]|callback_valida_meta_link');
+				$this->form_validation->set_rules('categoria_pai_meta_link', 'Meta link da categoria', 'trim|required|min_length[2]|max_length[100]');
 				$this->form_validation->set_rules('categoria_pai_ativa', 'Situação da categoria', 'trim|required|in_list[0,1]');
 
 				if ($this->form_validation->run()) {
@@ -115,6 +118,9 @@ class Categorias extends CI_Controller
 					$data = array(
 						'titulo' => 'Editar categoria',
 						'categoria' => $categoria,
+						'scripts' => array(
+							'js/categorias_form.js',
+						),
 					);
 
 					$this->load->view('restrita/layout/header', $data);
