@@ -1,0 +1,131 @@
+/**
+ * Estilos customizados para o sistema
+ */
+
+/* Página de Login */
+.section {
+    padding: 40px 0;
+}
+
+.card-primary {
+    border-top: 3px solid #6777ef;
+}
+
+.card-primary .card-header {
+    background-color: #6777ef;
+    color: #fff;
+    border-bottom: none;
+}
+
+.card-primary .card-header h4 {
+    margin: 0;
+    font-weight: 600;
+}
+
+/* Efeitos nos inputs */
+.form-control:focus {
+    border-color: #6777ef;
+    box-shadow: 0 0 0 0.2rem rgba(103, 119, 239, 0.25);
+}
+
+/* Botão primário */
+.btn-primary {
+    background-color: #6777ef;
+    border-color: #6777ef;
+}
+
+.btn-primary:hover,
+.btn-primary:focus,
+.btn-primary:active {
+    background-color: #4c63d2;
+    border-color: #4c63d2;
+}
+
+/* Links */
+a {
+    color: #6777ef;
+}
+
+a:hover {
+    color: #4c63d2;
+}
+
+/* Footer simples */
+.simple-footer {
+    text-align: center;
+    margin-top: 30px;
+    color: #6c757d;
+    font-size: 14px;
+}
+
+/* Alertas */
+.alert-has-icon {
+    position: relative;
+    padding-left: 70px;
+}
+
+.alert-has-icon .alert-icon {
+    position: absolute;
+    left: 25px;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 24px;
+}
+
+.alert-title {
+    font-weight: 600;
+    margin-bottom: 5px;
+}
+
+/* Loader */
+.loader {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: #fff;
+    z-index: 9999;
+    display: none;
+}
+
+.loader.show {
+    display: block;
+}
+
+/* Animações */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.card {
+    animation: fadeIn 0.3s ease-in-out;
+}
+
+/* Checkbox personalizado */
+.custom-control-input:checked ~ .custom-control-label::before {
+    background-color: #6777ef;
+    border-color: #6777ef;
+}
+
+.custom-control-input:focus ~ .custom-control-label::before {
+    box-shadow: 0 0 0 0.2rem rgba(103, 119, 239, 0.25);
+}
+
+/* Responsividade */
+@media (max-width: 576px) {
+    .section {
+        padding: 20px 0;
+    }
+    
+    .card {
+        margin: 0 10px;
+    }
+}

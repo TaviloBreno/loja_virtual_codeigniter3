@@ -10,6 +10,11 @@ class Usuarios extends CI_Controller
 	{
 		parent::__construct();
 
+		// Verificar se está logado
+		if (!$this->ion_auth->logged_in()) {
+			redirect('login');
+		}
+
 		$this->load->model('core_model');
 	}
 
