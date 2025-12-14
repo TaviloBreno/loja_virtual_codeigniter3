@@ -21,6 +21,9 @@
 						<li class="dropdown <?php echo $this->router->fetch_class() == 'usuarios' ? 'active' : ''; ?>">
 							<a href="<?php echo base_url('restrita/usuarios'); ?>" class="nav-link"><i data-feather="users"></i><span>Usuários</span></a>
 						</li>
+						<li class="dropdown <?php echo $this->router->fetch_class() == 'sistema' ? 'active' : ''; ?>">
+							<a href="<?php echo base_url('restrita/sistema'); ?>" class="nav-link"><i data-feather="settings"></i><span>Sistema</span></a>
+						</li>
 					</ul>
 				</aside>
 			</div>
