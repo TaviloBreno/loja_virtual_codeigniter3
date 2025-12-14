@@ -122,17 +122,17 @@ class Usuarios extends CI_Controller
 						
 						$perfil_post = $this->input->post('perfil');
 						
-						// Remover o usuário de todos os grupos
-						$this->ion_auth->remove_from_group('', $usuario_id);
-						
-						// Adicionar o usuário ao novo grupo
-						$this->ion_auth->add_to_group($perfil_post, $usuario_id);
-						
+						if($perfil_post){
+							$this->ion_auth->remove_from_group(NULL, $usuario_id);
+							$this->ion_auth->add_to_group($perfil_post, $usuario_id);
+						}
+
 						$this->session->set_flashdata('sucesso', 'Dados editados com sucesso');
-						redirect('restrita/usuarios');
 					} else {
 						$this->session->set_flashdata('error', 'Erro ao editar os dados');
 					}
+
+					redirect('restrita/usuarios');
 				} else {
 					$data = array(
 						'titulo' => 'Editar usuário',

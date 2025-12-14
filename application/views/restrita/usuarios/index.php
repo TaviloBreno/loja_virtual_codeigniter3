@@ -14,6 +14,9 @@
 					<div class="card">
 						<div class="card-header">
 							<h4><?php echo isset($titulo) ? $titulo : 'Gerenciar Usuários'; ?></h4>
+							<div class="card-header-action">
+								<a href="<?php echo base_url('restrita/usuarios/core'); ?>" class="btn btn-primary btn-sm">Cadastrar</a>
+							</div>
 						</div>
 						<div class="card-body">
 
