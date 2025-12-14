@@ -52,7 +52,7 @@
 											</th>
 											<th>Nome completo</th>
 											<th>E-mail</th>
-											<th>Usuario</th>
+											<th>Perfil de acesso</th>
 											<th>Status</th>
 											<th class="nosort">Ações</th>
 										</tr>
@@ -64,7 +64,7 @@
 												<td class="text-center"><?php echo $usuario->id; ?></td>
 												<td><?php echo $usuario->first_name . ' ' . $usuario->last_name; ?></td>
 												<td><?php echo $usuario->email; ?></td>
-												<td><?php echo $usuario->username; ?></td>
+												<td><?php echo ($this->ion_auth->is_admin($usuario->id) ? 'Administrador' : 'Cliente'); ?></td>
 												<td><?php echo ($usuario->active == 1 ? '<span class="badge badge-success badge-shadow">Ativo</span>' : '<span class="badge badge-danger badge-shadow">Inativo</span>'); ?></td>
 												<td>
 													<a href="<?php echo base_url('restrita/usuarios/core/' . $usuario->id); ?>" class="btn btn-primary btn-action mr-1" data-toggle="tooltip" title="Editar"><i class="fas fa-pencil-alt"></i></a>
