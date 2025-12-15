@@ -91,7 +91,11 @@ class Produtos extends CI_Controller
 
 				$data = html_escape($data);
 
-				if ($this->core_model->insert('produtos', $data)) {
+				$produto_id = $this->core_model->insert('produtos', $data, TRUE);
+				
+				if ($produto_id) {
+					// Processar upload de imagens
+					$this->do_upload($produto_id);
 					$this->session->set_flashdata('sucesso', 'Produto cadastrado com sucesso');
 				} else {
 					$this->session->set_flashdata('error', 'Erro ao cadastrar o produto');
@@ -164,16 +168,20 @@ class Produtos extends CI_Controller
 				$data = html_escape($data);
 
 				if ($this->core_model->update('produtos', $data, array('produto_id' => $produto_id))) {
+					// Processar upload de novas imagens
+					$this->do_upload($produto_id);
 					$this->session->set_flashdata('sucesso', 'Produto atualizado com sucesso');
 				} else {
 					$this->session->set_flashdata('error', 'Erro ao atualizar o produto');
 				}
 
-				redirect('restrita/produtos');
-			} else {
+				// Buscar imagens do produto
+				$imagens = $this->core_model->get_all('produtos_imagens', array('produto_id' => $produto_id));
+				
 				$data = array(
 					'titulo' => 'Editar produto',
 					'produto' => $produto,
+					'imagens' => $imagens,
 					'marcas' => $marcas,
 					'categorias' => $categorias,
 					'scripts' => array(
@@ -186,6 +194,115 @@ class Produtos extends CI_Controller
 				$this->load->view('restrita/layout/footer');
 			}
 		}
+	}
+
+	// Método para fazer upload de imagens
+	private function do_upload($produto_id)
+	{
+		if (isset($_FILES['produto_imagens']) && !empty($_FILES['produto_imagens']['name'][0])) {
+			$config['upload_path'] = './public/uploads/produtos/';
+			$config['allowed_types'] = 'jpg|jpeg|png|gif|webp';
+			$config['max_size'] = 2048; // 2MB
+
+			$this->load->library('upload', $config);
+
+			$files = $_FILES['produto_imagens'];
+			$filesCount = count($files['name']);
+
+			for ($i = 0; $i < $filesCount; $i++) {
+				if (!empty($files['name'][$i])) {
+					$_FILES['userfile']['name'] = $files['name'][$i];
+					$_FILES['userfile']['type'] = $files['type'][$i];
+					$_FILES['userfile']['tmp_name'] = $files['tmp_name'][$i];
+					$_FILES['userfile']['error'] = $files['error'][$i];
+					$_FILES['userfile']['size'] = $files['size'][$i];
+
+					// Gerar nome único para o arquivo
+					$ext = pathinfo($files['name'][$i], PATHINFO_EXTENSION);
+					$new_name = 'produto_' . $produto_id . '_' . time() . '_' . $i . '.' . $ext;
+					$config['file_name'] = $new_name;
+
+					$this->upload->initialize($config);
+
+					if ($this->upload->do_upload('userfile')) {
+						$uploadData = $this->upload->data();
+						
+						// Verificar se é a primeira imagem para definir como principal
+						$imagens_existentes = $this->core_model->get_all('produtos_imagens', array('produto_id' => $produto_id));
+						$principal = (empty($imagens_existentes) && $i == 0) ? 1 : 0;
+
+						// Salvar no banco de dados
+						$data_imagem = array(
+							'produto_id' => $produto_id,
+							'produto_imagem_nome' => $uploadData['file_name'],
+							'produto_imagem_principal' => $principal
+						);
+
+						$this->core_model->insert('produtos_imagens', $data_imagem);
+					}
+				}
+			}
+		}
+	}
+
+	// Método para excluir imagem
+	public function excluir_imagem($imagem_id = NULL)
+	{
+		if (!$imagem_id) {
+			$this->session->set_flashdata('error', 'Imagem não encontrada');
+			redirect($_SERVER['HTTP_REFERER']);
+		}
+
+		$imagem = $this->core_model->get_by_id('produtos_imagens', array('produto_imagem_id' => $imagem_id));
+
+		if (!$imagem) {
+			$this->session->set_flashdata('error', 'Imagem não encontrada');
+			redirect($_SERVER['HTTP_REFERER']);
+		}
+
+		// Excluir arquivo físico
+		$file_path = './public/uploads/produtos/' . $imagem->produto_imagem_nome;
+		if (file_exists($file_path)) {
+			unlink($file_path);
+		}
+
+		// Excluir do banco de dados
+		if ($this->core_model->delete('produtos_imagens', array('produto_imagem_id' => $imagem_id))) {
+			$this->session->set_flashdata('sucesso', 'Imagem excluída com sucesso');
+		} else {
+			$this->session->set_flashdata('error', 'Erro ao excluir a imagem');
+		}
+
+		redirect($_SERVER['HTTP_REFERER']);
+	}
+
+	// Método para definir imagem como principal
+	public function imagem_principal($imagem_id = NULL)
+	{
+		if (!$imagem_id) {
+			$this->session->set_flashdata('error', 'Imagem não encontrada');
+			redirect($_SERVER['HTTP_REFERER']);
+		}
+
+		$imagem = $this->core_model->get_by_id('produtos_imagens', array('produto_imagem_id' => $imagem_id));
+
+		if (!$imagem) {
+			$this->session->set_flashdata('error', 'Imagem não encontrada');
+			redirect($_SERVER['HTTP_REFERER']);
+		}
+
+		// Remover principal de todas as imagens do produto
+		$this->db->where('produto_id', $imagem->produto_id);
+		$this->db->update('produtos_imagens', array('produto_imagem_principal' => 0));
+
+		// Definir esta como principal
+		if ($this->core_model->update('produtos_imagens', array('produto_imagem_principal' => 1), array('produto_imagem_id' => $imagem_id))) {
+			$this->session->set_flashdata('sucesso', 'Imagem definida como principal');
+		} else {
+			$this->session->set_flashdata('error', 'Erro ao definir imagem como principal');
+		}
+
+		redirect($_SERVER['HTTP_REFERER']);
 	}
 
 	public function excluir($produto_id = NULL)

@@ -27,7 +27,7 @@
 						}
 						?>
 
-						<?php echo form_open('restrita/produtos/core/' . $produto_id, $atributos); ?>
+						<?php echo form_open_multipart('restrita/produtos/core/' . $produto_id, $atributos); ?>
 
 						<div class="card-body">
 							
@@ -179,6 +179,39 @@
 									<label for="inputDescricao">Descrição completa</label>
 									<textarea class="form-control" name="produto_descricao" id="inputDescricao" rows="5"><?php echo isset($produto) ? $produto->produto_descricao : ''; ?></textarea>
 									<?php echo form_error('produto_descricao', '<div class="text-danger">', '</div>'); ?>
+								</div>
+							</div>
+
+							<hr>
+
+							<!-- Imagens do Produto -->
+							<h6 class="text-primary mb-3"><i class="fas fa-images"></i> Imagens do Produto</h6>
+							
+							<?php if (isset($imagens) && !empty($imagens)): ?>
+								<div class="row mb-3">
+									<?php foreach ($imagens as $imagem): ?>
+										<div class="col-md-3 mb-3">
+											<div class="card">
+												<img src="<?php echo base_url('public/uploads/produtos/' . $imagem->produto_imagem_nome); ?>" class="card-img-top" alt="Imagem do produto" style="height: 200px; object-fit: cover;">
+												<div class="card-body p-2">
+													<?php if ($imagem->produto_imagem_principal == 1): ?>
+														<span class="badge badge-success mb-2">Principal</span>
+													<?php else: ?>
+														<a href="<?php echo base_url('restrita/produtos/imagem_principal/' . $imagem->produto_imagem_id); ?>" class="badge badge-info mb-2">Definir como principal</a>
+													<?php endif; ?>
+													<a href="<?php echo base_url('restrita/produtos/excluir_imagem/' . $imagem->produto_imagem_id); ?>" class="badge badge-danger mb-2" onclick="return confirm('Deseja realmente excluir esta imagem?')">Excluir</a>
+												</div>
+											</div>
+										</div>
+									<?php endforeach; ?>
+								</div>
+							<?php endif; ?>
+
+							<div class="form-row">
+								<div class="form-group col-md-12">
+									<label for="inputImagens">Adicionar imagens (múltiplas)</label>
+									<input type="file" class="form-control-file" name="produto_imagens[]" id="inputImagens" accept="image/*" multiple>
+									<small class="form-text text-muted">Formatos aceitos: JPG, JPEG, PNG, GIF, WEBP. Tamanho máximo: 2MB por imagem. <?php echo !isset($produto) ? 'A primeira imagem será definida como principal.' : ''; ?></small>
 								</div>
 							</div>
 
