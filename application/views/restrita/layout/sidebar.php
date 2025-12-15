@@ -36,6 +36,9 @@
 						<li class="dropdown <?php echo $this->router->fetch_class() == 'produtos' ? 'active' : ''; ?>">
 						<a href="<?php echo base_url('restrita/produtos'); ?>" class="nav-link"><i data-feather="shopping-bag"></i><span>Produtos</span></a>
 						</li>
+						<li class="dropdown <?php echo $this->router->fetch_class() == 'frete' ? 'active' : ''; ?>">
+						<a href="<?php echo base_url('restrita/frete'); ?>" class="nav-link"><i data-feather="truck"></i><span>Simulador de Frete</span></a>
+						</li>
 					</ul>
 				</aside>
 			</div>
