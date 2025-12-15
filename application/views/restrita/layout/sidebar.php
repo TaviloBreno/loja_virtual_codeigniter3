@@ -10,14 +10,6 @@
 						<li class="dropdown <?php echo $this->router->fetch_class() == 'home' ? 'active' : ''; ?>">
 							<a href="<?php echo base_url('restrita'); ?>" class="nav-link"><i data-feather="monitor"></i><span>Home</span></a>
 						</li>
-						<li class="dropdown">
-							<a href="#" class="menu-toggle nav-link has-dropdown"><i
-									data-feather="briefcase"></i><span>Widgets</span></a>
-							<ul class="dropdown-menu">
-								<li><a class="nav-link" href="widget-chart.html">Chart Widgets</a></li>
-								<li><a class="nav-link" href="widget-data.html">Data Widgets</a></li>
-							</ul>
-						</li>
 						<li class="dropdown <?php echo $this->router->fetch_class() == 'usuarios' ? 'active' : ''; ?>">
 							<a href="<?php echo base_url('restrita/usuarios'); ?>" class="nav-link"><i data-feather="users"></i><span>Usuários</span></a>
 						</li>
@@ -38,6 +30,9 @@
 						</li>
 						<li class="dropdown <?php echo $this->router->fetch_class() == 'frete' ? 'active' : ''; ?>">
 						<a href="<?php echo base_url('restrita/frete'); ?>" class="nav-link"><i data-feather="truck"></i><span>Simulador de Frete</span></a>
+						</li>
+						<li class="dropdown <?php echo $this->router->fetch_class() == 'pagamentos' ? 'active' : ''; ?>">
+						<a href="<?php echo base_url('restrita/pagamentos'); ?>" class="nav-link"><i data-feather="credit-card"></i><span>Pagamentos</span></a>
 						</li>
 					</ul>
 				</aside>
