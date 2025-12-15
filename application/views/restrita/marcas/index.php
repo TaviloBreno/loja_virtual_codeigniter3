@@ -50,26 +50,26 @@
 								<table class="table table-striped data-table">
 									<thead>
 										<tr>
-											<th class="text-center">
+											<th class="text-center d-none d-md-table-cell">
 												#
 											</th>
 											<th>Marca</th>
-											<th>Meta link</th>
-											<th>Ativa</th>
-											<th>Data de criação</th>
-											<th class="nosort">Ações</th>
+											<th class="d-none d-lg-table-cell">Meta link</th>
+											<th class="d-none d-md-table-cell">Ativa</th>
+											<th class="d-none d-lg-table-cell">Data de criação</th>
+											<th class="nosort" style="min-width: 100px;">Ações</th>
 										</tr>
 									</thead>
 									<tbody>
 										<?php foreach ($marcas as $marca): ?>
 
 											<tr>
-												<td class="text-center"><?php echo $marca->marca_id; ?></td>
+												<td class="text-center d-none d-md-table-cell"><?php echo $marca->marca_id; ?></td>
 												<td><?php echo $marca->marca_nome; ?></td>
-												<td><?php echo $marca->marca_meta_link; ?></td>
-												<td><?php echo ($marca->marca_ativa == 1 ? '<span class="badge badge-success badge-shadow">Sim</span>' : '<span class="badge badge-danger badge-shadow">Não</span>'); ?></td>
-												<td><?php echo formata_data_banco_com_hora($marca->marca_data_criacao); ?></td>
-												<td>
+												<td class="d-none d-lg-table-cell"><?php echo $marca->marca_meta_link; ?></td>
+												<td class="d-none d-md-table-cell"><?php echo ($marca->marca_ativa == 1 ? '<span class="badge badge-success badge-shadow">Sim</span>' : '<span class="badge badge-danger badge-shadow">Não</span>'); ?></td>
+												<td class="d-none d-lg-table-cell"><?php echo formata_data_banco_com_hora($marca->marca_data_criacao); ?></td>
+												<td class="text-nowrap">
 													<a href="<?php echo base_url('restrita/marcas/core/' . $marca->marca_id); ?>" class="btn btn-primary btn-action mr-1" data-toggle="tooltip" title="Editar"><i class="fas fa-pencil-alt"></i></a>
 													<button type="button" class="btn btn-danger btn-action btn-delete" data-toggle="tooltip" title="Excluir" data-id="<?php echo $marca->marca_id; ?>" data-nome="<?php echo $marca->marca_nome; ?>"><i class="fas fa-trash"></i></button>
 												</td>
