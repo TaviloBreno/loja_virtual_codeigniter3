@@ -30,6 +30,9 @@
 						<li class="dropdown <?php echo $this->router->fetch_class() == 'categorias' ? 'active' : ''; ?>">
 						<a href="<?php echo base_url('restrita/categorias'); ?>" class="nav-link"><i data-feather="layers"></i><span>Categorias</span></a>
 						</li>
+						<li class="dropdown <?php echo $this->router->fetch_class() == 'subcategorias' ? 'active' : ''; ?>">
+						<a href="<?php echo base_url('restrita/subcategorias'); ?>" class="nav-link"><i data-feather="list"></i><span>Subcategorias</span></a>
+						</li>
 					</ul>
 				</aside>
 			</div>
