@@ -50,25 +50,24 @@
 								<table class="table table-striped data-table">
 									<thead>
 										<tr>
-											<th class="text-center">
+											<th class="text-center d-none d-md-table-cell">
 												#
 											</th>
 											<th>Categoria</th>
-											<th>Meta link</th>
-											<th>Ativa</th>
-											<th class="nosort">Ações</th>
+											<th class="d-none d-lg-table-cell">Meta link</th>
+											<th class="d-none d-md-table-cell">Ativa</th>
+											<th class="nosort" style="min-width: 100px;">Ações</th>
 										</tr>
 									</thead>
 									<tbody>
 										<?php foreach ($categorias as $categoria): ?>
 
 											<tr>
-												<td class="text-center"><?php echo $categoria->categoria_pai_id; ?></td>
-												<td><?php echo $categoria->categoria_pai_nome; ?></td>
-												<td><?php echo $categoria->categoria_pai_meta_link; ?></td>
-												<td><?php echo ($categoria->categoria_pai_ativa == 1 ? '<span class="badge badge-success badge-shadow">Sim</span>' : '<span class="badge badge-danger badge-shadow">Não</span>'); ?></td>
-												<td>
-													<a href="<?php echo base_url('restrita/categorias/core/' . $categoria->categoria_pai_id); ?>" class="btn btn-primary btn-action mr-1" data-toggle="tooltip" title="Editar"><i class="fas fa-pencil-alt"></i></a>
+											<td class="text-center d-none d-md-table-cell"><?php echo $categoria->categoria_pai_id; ?></td>
+											<td><?php echo $categoria->categoria_pai_nome; ?></td>
+											<td class="d-none d-lg-table-cell"><?php echo $categoria->categoria_pai_meta_link; ?></td>
+											<td class="d-none d-md-table-cell"><?php echo ($categoria->categoria_pai_ativa == 1 ? '<span class="badge badge-success badge-shadow">Sim</span>' : '<span class="badge badge-danger badge-shadow">Não</span>'); ?></td>
+											<td class="text-nowrap">
 													<button type="button" class="btn btn-danger btn-action btn-delete" data-toggle="tooltip" title="Excluir" data-id="<?php echo $categoria->categoria_pai_id; ?>" data-nome="<?php echo $categoria->categoria_pai_nome; ?>"><i class="fas fa-trash"></i></button>
 												</td>
 											</tr>

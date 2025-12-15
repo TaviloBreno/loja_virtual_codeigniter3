@@ -13,9 +13,9 @@
 				<div class="col-12">
 					<div class="card">
 						<div class="card-header">
-							<h4><?php echo isset($titulo) ? $titulo : 'Gerenciar Subcategorias'; ?></h4>
+							<h4><?php echo isset($titulo) ? $titulo : 'Gerenciar Produtos'; ?></h4>
 							<div class="card-header-action">
-								<a href="<?php echo base_url('restrita/subcategorias/core'); ?>" class="btn btn-primary">
+								<a href="<?php echo base_url('restrita/produtos/core'); ?>" class="btn btn-primary">
 									<i class="fas fa-plus"></i> Cadastrar
 								</a>
 							</div>
@@ -49,36 +49,50 @@
 									<thead>
 										<tr>
 											<th class="text-center d-none d-md-table-cell">#</th>
-											<th>Subcategoria</th>
-											<th class="d-none d-lg-table-cell">Categoria Pai</th>
-											<th class="d-none d-xl-table-cell">Meta Link</th>
-											<th class="d-none d-md-table-cell">Ativa</th>
-											<th class="text-center" style="min-width: 100px;">Ações</th>
+											<th class="d-none d-lg-table-cell">Código</th>
+											<th>Produto</th>
+											<th class="d-none d-lg-table-cell">Categoria</th>
+											<th class="d-none d-xl-table-cell">Marca</th>
+											<th>Valor</th>
+											<th class="d-none d-md-table-cell">Estoque</th>
+											<th class="d-none d-md-table-cell">Ativo</th>
+											<th class="text-center nosort" style="min-width: 100px;">Ações</th>
 										</tr>
 									</thead>
 									<tbody>
-										<?php foreach ($subcategorias as $subcategoria): ?>
+										<?php foreach ($produtos as $produto): ?>
 											<?php 
-												// Buscar nome da categoria pai
-												$categoria_pai = $this->core_model->get_by_id('categorias_pai', array('categoria_pai_id' => $subcategoria->categoria_pai_id));
+												// Buscar nome da categoria
+												$categoria = $this->core_model->get_by_id('categorias', array('categoria_id' => $produto->produto_categoria_id));
+												// Buscar nome da marca
+												$marca = $this->core_model->get_by_id('marcas', array('marca_id' => $produto->produto_marca_id));
 											?>
 											<tr>
-												<td class="text-center d-none d-md-table-cell"><?php echo $subcategoria->categoria_id; ?></td>
-												<td><?php echo $subcategoria->categoria_nome; ?></td>
-												<td class="d-none d-lg-table-cell"><?php echo $categoria_pai ? $categoria_pai->categoria_pai_nome : 'N/A'; ?></td>
-												<td class="d-none d-xl-table-cell"><?php echo $subcategoria->categoria_meta_link; ?></td>
-												<td class="d-none d-md-table-cell">
-													<?php if ($subcategoria->categoria_ativa == 1): ?>
+												<td class="text-center"><?php echo $produto->produto_id; ?></td>
+												<td><?php echo $produto->produto_codigo; ?></td>
+												<td><?php echo $produto->produto_nome; ?></td>
+												<td><?php echo $categoria ? $categoria->categoria_nome : 'N/A'; ?></td>
+												<td><?php echo $marca ? $marca->marca_nome : 'N/A'; ?></td>
+												<td>R$ <?php echo number_format($produto->produto_valor, 2, ',', '.'); ?></td>
+												<td>
+													<?php if ($produto->produto_controlar_estoque == 1): ?>
+														<span class="badge badge-info"><?php echo $produto->produto_quantidade_estoque; ?></span>
+													<?php else: ?>
+														<span class="badge badge-secondary">N/A</span>
+													<?php endif; ?>
+												</td>
+												<td>
+													<?php if ($produto->produto_ativo == 1): ?>
 														<span class="badge badge-success">Sim</span>
 													<?php else: ?>
 														<span class="badge badge-danger">Não</span>
 													<?php endif; ?>
 												</td>
-												<td class="text-center text-nowrap">
-													<a href="<?php echo base_url('restrita/subcategorias/core/' . $subcategoria->categoria_id); ?>" class="btn btn-primary btn-sm" data-toggle="tooltip" title="Editar">
+												<td class="text-center">
+													<a href="<?php echo base_url('restrita/produtos/core/' . $produto->produto_id); ?>" class="btn btn-primary btn-sm">
 														<i class="fas fa-edit"></i>
 													</a>
-													<button type="button" class="btn btn-danger btn-sm btn-delete" data-toggle="tooltip" title="Excluir" data-id="<?php echo $subcategoria->categoria_id; ?>" data-nome="<?php echo $subcategoria->categoria_nome; ?>">
+													<button type="button" class="btn btn-danger btn-sm btn-delete" data-id="<?php echo $produto->produto_id; ?>" data-nome="<?php echo $produto->produto_nome; ?>">
 														<i class="fas fa-trash"></i>
 													</button>
 												</td>
