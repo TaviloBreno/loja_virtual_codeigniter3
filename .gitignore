@@ -1,0 +1,35 @@
+# Dependency directories
+/src/vendor/
+/src/composer.lock
+
+# Environment variables
+.env
+.env.local
+.env.*.local
+
+# Docker
+.docker/
+docker-compose.override.yml
+
+# Logs and Caches
+/src/application/logs/*
+!/src/application/logs/index.html
+/src/application/cache/*
+!/src/application/cache/index.html
+/src/writable/*
+!/src/writable/index.html
+
+# IDEs and Editors
+.idea/
+.vscode/
+*.swp
+*.swo
+.DS_Store
+Thumbs.db
+
+# OS generated files
+ehthumbs.db
+Icon?
+
+# User-specific files
+*.log
